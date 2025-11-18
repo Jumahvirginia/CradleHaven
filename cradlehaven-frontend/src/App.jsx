@@ -1,25 +1,16 @@
 import React from 'react';
+// This line below is what was failing. It needs to find the file above.
+import RegisterPatient from './components/RegisterPatient';
 
 export default function App() {
   return (
-    // These weird classes (min-h-screen, bg-gray-100) are Tailwind!
-    // If the background turns gray and text turns blue, it works.
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center font-sans">
-      <div className="text-center p-10 bg-white rounded-xl shadow-lg">
-        
-        <h1 className="text-5xl font-bold text-blue-600 mb-4">
-          Welcome to Cradlehaven
-        </h1>
-        
-        <p className="text-xl text-gray-600">
-          Your maternal care dashboard is coming soon.
-        </p>
-        
-        <button className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
-          Get Started
-        </button>
-
-      </div>
+    <div className="min-h-screen bg-gray-100 font-sans text-gray-900">
+      <nav className="bg-white shadow-sm p-4">
+        <h1 className="text-xl font-bold text-blue-600">Cradlehaven</h1>
+      </nav>
+      <main className="p-8">
+        <RegisterPatient />
+      </main>
     </div>
   );
 }
