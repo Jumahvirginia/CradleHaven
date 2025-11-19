@@ -1,20 +1,43 @@
 const Appointment = require('../models/appointment.model');
 const Patient = require('../models/patient.model');
 
-// --- 1. Get All Appointments ---
+// --- 1. Get All Appointments (With Filtering!) ---
 // @route   GET /api/appointments
-// @desc    Get all appointments
+// @desc    Get appointments with optional filters (date, status)
 exports.getAllAppointments = async (req, res) => {
   try {
-    // This .find() command will get all appointments
-    // .populate('patient') is the magic! It will replace the
-    // patient ID with the actual patient's data (name, phone, etc.)
-    const appointments = await Appointment.find().populate('patient');
+    const { date, status } = req.query;
+    let query = {};
+
+    // Filter by specific date
+    if (date) {
+      const targetDate = new Date(date);
+      const startOfDay = new Date(targetDate);
+      startOfDay.setHours(0, 0, 0, 0);
+      
+      const endOfDay = new Date(targetDate);
+      endOfDay.setHours(23, 59, 59, 999);
+      
+      query.appointmentDate = { $gte: startOfDay, $lte: endOfDay };
+    }
+
+    // Filter by status (e.g., "Missed", "Scheduled")
+    if (status && status !== 'All') {
+      query.status = status;
+    }
+
+    // Find appointments, join with patient data, and sort by date (newest first)
+    const appointments = await Appointment.find(query)
+      .populate('patient', 'fullName phoneNumber') // Only get name and phone
+      .sort({ appointmentDate: 1 }); // Earliest first
+
     res.status(200).json(appointments);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching appointments', error: error.message });
   }
 };
+
+
 
 // --- 2. Create a New Appointment ---
 // @route   POST /api/appointments
