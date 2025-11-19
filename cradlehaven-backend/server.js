@@ -35,11 +35,11 @@ const patientRoutes = require('./routes/patient.routes');
 // Tell Express to use the patient routes
 app.use('/api/patients', patientRoutes);
 
-// ====> ADD THIS LINE <====
+
 // Import your new appointment routes
 const appointmentRoutes = require('./routes/appointment.routes');
 
-// ====> AND ADD THIS LINE <====
+ 
 // Tell Express to use the appointment routes
 // Any URL starting with /api/appointments will be handled by appointmentRoutes
 app.use('/api/appointments', appointmentRoutes);
@@ -49,3 +49,14 @@ app.use('/api/appointments', appointmentRoutes);
 app.listen(PORT, () => {
   console.log(`Cradlehaven server is running on http://localhost:${PORT}`);
 });
+// ... existing imports ...
+
+// Import the new route
+const dashboardRoutes = require('./routes/dashboard.routes'); 
+
+// ... inside app.use() section ...
+app.use('/api/patients', patientRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/dashboard', dashboardRoutes); 
+
+
