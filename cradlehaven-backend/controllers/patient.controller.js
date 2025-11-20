@@ -1,10 +1,10 @@
 // We first import the "Patient" model we just created.
 // This is how we'll talk to the 'patients' collection in our database.
-const Patient = require('../models/patient.model');
+import Patient from '../models/patient.model.js';
 
 // --- 1. Get All Patients ---
 // This function will find every patient in the database.
-exports.getAllPatients = async (req, res) => {
+export const getAllPatients = async (req, res) => {
   try {
     // Patient.find() is a Mongoose command that means "find all documents".
     const patients = await Patient.find();
@@ -18,7 +18,7 @@ exports.getAllPatients = async (req, res) => {
 
 // --- 2. Create a New Patient ---
 // This function will handle registering a new patient.
-exports.createPatient = async (req, res) => {
+export const createPatient = async (req, res) => {
   try {
     // We get the data from the request body (this will come from your React form)
     const { fullName, phoneNumber, lmp, notes } = req.body;
@@ -55,7 +55,7 @@ exports.createPatient = async (req, res) => {
 
 // --- 3. Get a Single Patient by ID ---
 // This function will find one specific patient using their ID
-exports.getPatientById = async (req, res) => {
+export const getPatientById = async (req, res) => {
   try {
     // req.params.id comes from the URL (e.g., /api/patients/12345)
     const patient = await Patient.findById(req.params.id);

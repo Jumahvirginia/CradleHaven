@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
 // We import the "brain" (the controller)
-const patientController = require('../controllers/patient.controller');
+import * as patientController from '../controllers/patient.controller.js';
 
 // --- Define Patient Routes ---
 // This file connects a URL path to a controller function.
@@ -30,4 +30,4 @@ router.get('/:id', patientController.getPatientById);
 
 // We will add PUT (update) and DELETE routes here later
 
-module.exports = router; // This makes the file usable by our main server.js
+export default router; // This makes the file usable by our main server.js

@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
 // We import the "brain" (the controller) we just made
-const appointmentController = require('../controllers/appointment.controller');
+import * as appointmentController from '../controllers/appointment.controller.js';
 
 // --- Define Appointment Routes ---
 // This file connects a URL path to a controller function.
@@ -28,6 +28,4 @@ router.get('/', appointmentController.getAllAppointments);
 // it will run the 'updateAppointmentStatus' function.
 router.put('/:id', appointmentController.updateAppointmentStatus);
 
-// We will add DELETE later.
-
-module.exports = router; // This makes the file usable by our main server.js
+export default router; // This makes the file usable by our main server.js

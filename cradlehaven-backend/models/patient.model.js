@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // A Schema defines the "shape" of a document in MongoDB
 const PatientSchema = new mongoose.Schema({
@@ -62,4 +62,4 @@ PatientSchema.pre('save', function(next) {
 // The Model is the tool we use to interact with the 'patients' collection
 const Patient = mongoose.model('Patient', PatientSchema);
 
-module.exports = Patient;
+export default Patient;

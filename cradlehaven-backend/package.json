@@ -1,7 +1,8 @@
 {
   "name": "cradlehaven-backend",
   "version": "1.0.0",
-  "description": "Backend API for Cradlehaven, a maternal care management tool.",
+  "type": "module",
+  "description": "Backend API for Cradlehaven",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

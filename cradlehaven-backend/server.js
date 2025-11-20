@@ -1,8 +1,13 @@
 // --- Imports ---
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config(); // Loads environment variables from .env file
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import patientRoutes from './routes/patient.routes.js';
+import appointmentRoutes from './routes/appointment.routes.js';
+import dashboardRoutes from './routes/dashboard.routes.js';
+
+dotenv.config(); // Loads environment variables from .env file
 
 // --- App Initialization ---
 const app = express();
@@ -29,34 +34,13 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Cradlehaven API!');
 });
 
-// Import your patient routes
-const patientRoutes = require('./routes/patient.routes');
-
-// Tell Express to use the patient routes
 app.use('/api/patients', patientRoutes);
-
-
-// Import your new appointment routes
-const appointmentRoutes = require('./routes/appointment.routes');
-
- 
-// Tell Express to use the appointment routes
-// Any URL starting with /api/appointments will be handled by appointmentRoutes
 app.use('/api/appointments', appointmentRoutes);
-
+app.use('/api/dashboard', dashboardRoutes);
 
 // --- Server Startup ---
 app.listen(PORT, () => {
   console.log(`Cradlehaven server is running on http://localhost:${PORT}`);
 });
-// ... existing imports ...
-
-// Import the new route
-const dashboardRoutes = require('./routes/dashboard.routes'); 
-
-// ... inside app.use() section ...
-app.use('/api/patients', patientRoutes);
-app.use('/api/appointments', appointmentRoutes);
-app.use('/api/dashboard', dashboardRoutes); 
 
 

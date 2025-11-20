@@ -1,9 +1,9 @@
-const Patient = require('../models/patient.model');
-const Appointment = require('../models/appointment.model');
+import Patient from '../models/patient.model.js';
+import Appointment from '../models/appointment.model.js';
 
 // @route   GET /api/dashboard/stats
 // @desc    Get counts AND today's appointment list
-exports.getDashboardStats = async (req, res) => {
+export const getDashboardStats = async (req, res) => {
   try {
     // Define "Today"
     const startOfDay = new Date();

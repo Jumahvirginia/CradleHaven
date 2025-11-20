@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 // This schema defines the "shape" of an appointment
@@ -43,4 +43,4 @@ const AppointmentSchema = new mongoose.Schema({
 // The Model is the tool we use to interact with the 'appointments' collection
 const Appointment = mongoose.model('Appointment', AppointmentSchema);
 
-module.exports = Appointment;
+export default Appointment;

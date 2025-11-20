@@ -1,10 +1,10 @@
-const Appointment = require('../models/appointment.model');
-const Patient = require('../models/patient.model');
+import Appointment from '../models/appointment.model.js';
+import Patient from '../models/patient.model.js';
 
 // --- 1. Get All Appointments (With Filtering!) ---
 // @route   GET /api/appointments
 // @desc    Get appointments with optional filters (date, status)
-exports.getAllAppointments = async (req, res) => {
+export const getAllAppointments = async (req, res) => {
   try {
     const { date, status } = req.query;
     let query = {};
@@ -42,7 +42,7 @@ exports.getAllAppointments = async (req, res) => {
 // --- 2. Create a New Appointment ---
 // @route   POST /api/appointments
 // @desc    Create a new appointment
-exports.createAppointment = async (req, res) => {
+export const createAppointment = async (req, res) => {
   try {
     const { patient, appointmentDate, notes } = req.body;
 
@@ -79,7 +79,7 @@ exports.createAppointment = async (req, res) => {
 // --- 3. Update an Appointment's Status ---
 // @route   PUT /api/appointments/:id
 // @desc    Update the status of an appointment (e.g., to "Completed")
-exports.updateAppointmentStatus = async (req, res) => {
+export const updateAppointmentStatus = async (req, res) => {
   try {
     const { status } = req.body; // We only want to update the status
 
